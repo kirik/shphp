@@ -1,0 +1,95 @@
+<?php
+$sh_languages['sh'] = array(
+    // State #0
+    array(
+        array(
+            '/\b(?:import)\b/i',
+            'sh_preproc',
+            -1
+        ),
+        array(
+            '/\b[+-]?(?:(?:0x[a-f0-9]+)|(?:(?:[\d]*\.)?[\d]+(?:[eE][+-]?[\d]+)?))u?(?:(?:int(?:8|16|32|64))|L)?\b/i',
+            'sh_number',
+            -1
+        ),
+        array(
+            '/\\\\"|\\\\\'/i',
+            'sh_normal',
+            -1
+        ),
+        array(
+            '/"/i',
+            'sh_string',
+            1
+        ),
+        array(
+            '/\'/i',
+            'sh_string',
+            2
+        ),
+        array(
+            '/function[ \t]+(?:[a-z]|_)[a-z0-9_]*[ \t]*(?:\(\))?|(?:[a-z]|_)[a-z0-9_]*[ \t]*\(\)/i',
+            'sh_function',
+            -1
+        ),
+        array(
+            '/(?:[a-z]*[-\/]+[a-z]+)+/i',
+            'sh_normal',
+            -1
+        ),
+        array(
+            '/\b(?:alias|bg|bind|break|builtin|caller|case|command|compgen|complete|continue|declare|dirs|disown|do|done|elif|else|enable|esac|eval|exec|exit|export|false|fc|fg|fi|for|getopts|hash|help|history|if|in|jobs|let|local|logout|popd|printf|pushd|read|readonly|return|select|set|shift|shopt|source|suspend|test|then|times|trap|true|type|typeset|umask|unalias|unset|until|wait|while)\b/i',
+            'sh_keyword',
+            -1
+        ),
+        array(
+            '/(?:[a-z]|_)[a-z0-9_]*(?==)|\$\{(?:[^ \t]+)\}|\$\((?:[^ \t]+)\)|\$(?:[a-z]|_)[a-z0-9_]*|\$(?:[^ \t]{1})/i',
+            'sh_variable',
+            -1
+        ),
+        array(
+            '/~|!|%|\^|\*|\(|\)|\+|=|\[|\]|\\\\|:|;|,|\.|\/|\?|&|<|>|\||%%|(?:##){2}(?!#)/i',
+            'sh_symbol',
+            -1
+        ),
+        array(
+            '/#/i',
+            'sh_comment',
+            3
+        )
+    ),
+    // State #1
+    array(
+        array(
+            '/"/i',
+            'sh_string',
+            -2
+        ),
+        array(
+            '/\\\\./i',
+            'sh_specialchar',
+            -1
+        )
+    ),
+    // State #2
+    array(
+        array(
+            '/\'/i',
+            'sh_string',
+            -2
+        ),
+        array(
+            '/\\\\./i',
+            'sh_specialchar',
+            -1
+        )
+    ),
+    // State #3
+    array(
+        array(
+            '/$/i',
+            null,
+            -2
+        )
+    )
+);

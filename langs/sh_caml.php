@@ -1,0 +1,77 @@
+<?php
+$sh_languages['caml'] = array(
+    // State #0
+    array(
+        array(
+            '/\b(?:external|open|include|[][\w\']*(?=\.))\b/i',
+            'sh_preproc',
+            -1
+        ),
+        array(
+            '/\b[+-]?(?:(?:0x[a-f0-9]+)|(?:(?:[\d]*\.)?[\d]+(?:[eE][+-]?[\d]+)?))u?(?:(?:int(?:8|16|32|64))|L)?\b/i',
+            'sh_number',
+            -1
+        ),
+        array(
+            '/"/i',
+            'sh_string',
+            1
+        ),
+        array(
+            '/\b(?:and|as|assert|asr|begin|class|closed|constraint|do|done|downto|else|end|exception|false|for|fun|function|functor|if|in|inherit|initializer|land|lazy|let|lor|lsl|lsr|lxor|match|method|mod|module|mutable|new|object|of|or|parser|private|rec|sig|struct|then|to|true|try|type|val|virtual|when|while|with)\b/i',
+            'sh_keyword',
+            -1
+        ),
+        array(
+            '/\(\*/i',
+            'sh_comment',
+            2
+        ),
+        array(
+            '/\b(?:[][\w\']*(?!\.)|int|int32|int64|nativeint|bool|char|exn|option|float|unit|string|list|array|ref|format|format4|lazy_t|in_channel|out_channel)\b/i',
+            'sh_type',
+            -1
+        ),
+        array(
+            '/~|!|%|\^|\*|\(|\)|-|\+|=|\[|\]|\\\\|:|;|,|\.|\/|\?|&|<|>|\|/i',
+            'sh_symbol',
+            -1
+        ),
+        array(
+            '/\{|\}/i',
+            'sh_cbracket',
+            -1
+        )
+    ),
+    // State #1
+    array(
+        array(
+            '/$/i',
+            null,
+            -2
+        ),
+        array(
+            '/\\\\(?:\\\\|")/i',
+            null,
+            -1
+        ),
+        array(
+            '/"/i',
+            'sh_string',
+            -2
+        )
+    ),
+    // State #2
+    array(
+        array(
+            '/\*\)/i',
+            'sh_comment',
+            -2
+        ),
+        array(
+            '/\(\*/i',
+            'sh_comment',
+            2
+        )
+    )
+);

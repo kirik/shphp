@@ -1,0 +1,95 @@
+<?php
+$sh_languages['slang'] = array(
+    // State #0
+    array(
+        array(
+            '/#/i',
+            'sh_comment',
+            1
+        ),
+        array(
+            '/\b(?:ERROR_BLOCK|EXECUTE_ERROR_BLOCK|EXIT_BLOCK|NULL|__tmp|_for|and|break|case|catch|chs|continue|define|do|else|else|exch|finally|for|foreach|forever|if|ifnot|loop|mod|mul2|not|or|orelse|pop|private|public|return|shl|shr|sign|sqr|static|struct|switch|then|throw|try|typedef|using|variable|while|xor)\b/i',
+            'sh_keyword',
+            -1
+        ),
+        array(
+            '/%/i',
+            'sh_comment',
+            1
+        ),
+        array(
+            '/"/i',
+            'sh_string',
+            2
+        ),
+        array(
+            '/\'/i',
+            'sh_string',
+            3
+        ),
+        array(
+            '/\b[+-]?(?:(?:0x[a-f0-9]+)|(?:(?:[\d]*\.)?[\d]+(?:[eE][+-]?[\d]+)?))u?(?:(?:int(?:8|16|32|64))|L)?\b/i',
+            'sh_number',
+            -1
+        ),
+        array(
+            '/~|!|\^|\*|\(|\)|-|\+|=|\[|\]|\\\\|:|;|,|\.|\/|&|<|>|\|/i',
+            'sh_symbol',
+            -1
+        ),
+        array(
+            '/\b(?:require)\b/i',
+            'sh_preproc',
+            -1
+        ),
+        array(
+            '/(?:[a-z]|_)[a-z0-9_]*(?=[ \t]*\()/i',
+            'sh_function',
+            -1
+        )
+    ),
+    // State #1
+    array(
+        array(
+            '/$/i',
+            null,
+            -2
+        )
+    ),
+    // State #2
+    array(
+        array(
+            '/$/i',
+            null,
+            -2
+        ),
+        array(
+            '/\\\\(?:\\\\|")/i',
+            null,
+            -1
+        ),
+        array(
+            '/"/i',
+            'sh_string',
+            -2
+        )
+    ),
+    // State #3
+    array(
+        array(
+            '/$/i',
+            null,
+            -2
+        ),
+        array(
+            '/\\\\(?:\\\\|\')/i',
+            null,
+            -1
+        ),
+        array(
+            '/\'/i',
+            'sh_string',
+            -2
+        )
+    )
+);

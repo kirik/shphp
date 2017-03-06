@@ -1,0 +1,6 @@
+0.1.2
+    Autoload language definition files added
+    Parsing heredoc blocks for PHP added
+
+0.1
+    First release
