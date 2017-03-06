@@ -1,0 +1,10 @@
+This is the README file for SHPHP - Syntax Highlighter in PHP [language converter].
+
+
+SHPHP uses the same file format to define languages as GNU Source-Highlight [http://www.gnu.org/software/src-highlite/].
+So any GNU Source-Highlight language definition files can be simply converted to SHPHP language definition file.
+
+The sh2php.pl script is written in Perl and requires the Parse::RecDescent module.
+
+To convert language run in command line:
+    perl sh2php.pl /path/to/GNU_Source_Highlight/language.lng >> /path/to/SHPHP/sh_language.php
